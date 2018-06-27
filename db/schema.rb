@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_27_025251) do
+ActiveRecord::Schema.define(version: 2018_06_27_082052) do
 
   create_table "forum_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2018_06_27_025251) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "forum_posts_count", default: 0
+    t.text "slug"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

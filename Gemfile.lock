@@ -175,6 +175,8 @@ GEM
     selenium-webdriver (3.12.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
+    sluggable-rails (0.1.6)
+      rails (~> 5.2.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -229,6 +231,7 @@ DEPENDENCIES
   rails (~> 5.2.0)
   sass-rails (~> 5.0)
   selenium-webdriver
+  sluggable-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

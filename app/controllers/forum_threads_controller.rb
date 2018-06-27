@@ -5,8 +5,11 @@ class ForumThreadsController < ApplicationController
     end
 
     def show
-        #render plain: params[:id]
-        @thread = ForumThread.find(params[:id])
+        #render plain: params[:slug]
+        @thread = ForumThread.find_by_slug(params[:slug])
     end
     
+    def new
+        @thread = ForumThread.new
+    end
 end

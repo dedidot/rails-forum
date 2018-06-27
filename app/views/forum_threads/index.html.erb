@@ -1,4 +1,8 @@
 <div class="row mrbotton10">
+    <%= link_to "Add new", new_forum_thread_path, class: "btn btn-sm btn-default col-md-12" %>
+</div>
+
+<div class="row mrbotton10">
     <div class="col-md-2">
         <select class="form-control" name="">
             <option value="">Last</option>
@@ -18,7 +22,7 @@
   </div> 
   <div class="media-body">
     <div class="col-md-12">
-        <h4 class="media-heading"><%= link_to t.title.titleize, forum_thread_path(t) %></h4>
+        <h4 class="media-heading"><%= link_to t.title.titleize, detail_forum_path(slug: t.slug) %></h4>
     </div>
     <div class="col-md-6">
         <div class="fn12 fncolorlabel">
