@@ -1,4 +1,11 @@
 <div class="row">
+    <% if @thread.errors.any? %>
+        <div class="alert alert-danger">
+            <% @thread.errors.full_messages.each do |error| %>
+                <span><%= error %></span><br/>
+            <% end %>
+        </div>
+    <% end %>
     <%= form_for @thread do |f| %>
         <div class="form-group">
             <%= f.label :title  %>
