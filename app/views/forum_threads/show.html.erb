@@ -1,4 +1,4 @@
-<div class="media mrbotton10">
+<div class="media mrbotton30">
   <div class="media-left">
     <a href="#">
         <%= image_tag "photo.jpg", { class: "photolist img-circle" } %>
@@ -6,7 +6,7 @@
   </div> 
   <div class="media-body">
     <div class="col-md-12">
-        <h4 class="media-heading"><%= @thread.title.titleize %></h4>
+        <h4 class="media-heading fweightnormal"><%= link_to @thread.title.titleize, detail_forum_path(slug: @thread.slug), class: "mdpdnull colorblack title font15" %></h4>
     </div>
     <div class="col-md-6">
         <div class="fn12 fncolorlabel">
