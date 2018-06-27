@@ -18,7 +18,7 @@
   </div> 
   <div class="media-body">
     <div class="col-md-12">
-        <a href="/forum_threads/<%= t.id %>"><h4 class="media-heading"><%= t.title.titleize %></h4></a>
+        <h4 class="media-heading"><%= link_to t.title.titleize, forum_thread_path(t) %></h4>
     </div>
     <div class="col-md-6">
         <div class="fn12 fncolorlabel">
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="col-md-6 right">
-        <span class="mrright10"><i class="glyphicon glyphicon-comment"></i> <%= t.forum_posts.count %></span>
+        <span class="mrright10"><i class="glyphicon glyphicon-comment"></i> <%= t.forum_posts_count %></span>
         <label class="label label-danger">Rails</label>
     </div>
     <div class="col-md-12 fn12 fncolorlabel">
