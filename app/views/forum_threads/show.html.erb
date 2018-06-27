@@ -1,0 +1,55 @@
+<div class="media mrbotton10">
+  <div class="media-left">
+    <a href="#">
+        <%= image_tag "photo.jpg", { class: "photolist img-circle" } %>
+    </a>
+  </div> 
+  <div class="media-body">
+    <div class="col-md-12">
+        <h4 class="media-heading"><%= @thread.title.titleize %></h4>
+    </div>
+    <div class="col-md-6">
+        <div class="fn12 fncolorlabel">
+            <span><%= I18n.l(@thread.created_at.to_date) %></span>
+            by <span class="fnbold"><%= @thread.user.name %></span>
+        </div>
+    </div>
+    <div class="col-md-6 right">
+        <span class="mrright10"><i class="glyphicon glyphicon-comment"></i> <%= @thread.forum_posts.count %></span>
+        <label class="label label-danger">Rails</label>
+    </div>
+    <div class="col-md-12 fn12 fncolorlabel">
+        <%= @thread.content %>
+    </div>
+  </div>
+</div>
+
+<% if @thread.forum_posts.any? %>
+    <% @thread.forum_posts.each do |t| %>
+    <div class="media mrbotton10">
+    <div class="media-left">
+        <a href="#">
+            <%= image_tag "photo.jpg", { class: "photolist img-circle" } %>
+        </a>
+    </div> 
+    <div class="media-body">
+        <div class="col-md-12">
+            <div class="fn12 fncolorlabel">
+                <span class="fnbold"><%= t.user.name %></span> at
+                <span><%= I18n.l(t.created_at.to_date) %></span>
+            </div>
+        </div>
+        <div class="col-md-12 fn12 fncolorlabel">
+            <%= t.content %>
+        </div>
+    </div>
+    </div>
+    <% end %>
+<% else %>
+    <div class="col-md-12">
+        <label class="aler aler-warning">Belum ada tanggapan</label>
+    </div>
+<% end %>
+
+
+</div>
