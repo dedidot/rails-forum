@@ -4,9 +4,16 @@ class ForumThreadsController < ApplicationController
         @threads = ForumThread.order(id: :desc)
     end
 
-    def show
+    def showbyslug
         #render plain: params[:slug]
         @thread = ForumThread.find_by_slug(params[:slug])
+        @post = ForumPost.new
+        render "show"
+    end
+
+    def show
+        @post = ForumPost.new
+        @thread = ForumThread.find(params[:slug])
     end
     
     def new
