@@ -28,7 +28,13 @@
   </div> 
   <div class="media-body">
     <div class="col-md-12">
-        <h4 class="media-heading fweightnormal"><%= link_to t.title.titleize, detail_forum_path(slug: t.slug), class: "mdpdnull colorblack title font15" %></h4>
+        <h4 class="media-heading fweightnormal"><%= link_to t.title.titleize, detail_forum_path(slug: t.slug), class: "mdpdnull colorblack title font15" %>
+        <% if t.sticky? %>
+            <span class="glyphicon glyphicon-pushpin"></span>
+        <% else %>
+            <%= link_to "Pin it", pinit_forum_thread_path(t), class: "btn btn-xs btn-default", method: :put %>
+        <% end %>
+        </h4>
     </div>
     <div class="col-md-6">
         <div class="fn12 fncolorlabel">

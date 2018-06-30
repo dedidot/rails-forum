@@ -3,7 +3,7 @@ class ForumThreadsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create]
 
     def index
-        @threads = ForumThread.order(id: :desc)
+        @threads = ForumThread.order(sticky_order: :asc).order(id: :desc)
     end
 
     def showbyslug
@@ -15,11 +15,30 @@ class ForumThreadsController < ApplicationController
 
     def show
         @post = ForumPost.new
-        @thread = ForumThread.find(params[:slug])
+        @thread = ForumThread.find(params[:id])
     end
     
     def new
         @thread = ForumThread.new
+    end
+
+    def pinit
+        @thread = ForumThread.find(params[:id])
+        @thread.pinit!
+        redirect_to root_path
+    end
+
+    def edit
+        @thread = ForumThread.find(params[:id])
+    end
+
+    def update
+        @thread = ForumThread.find(params[:id])
+        if @thread.update(resource_params)
+            redirect_back(fallback_location: detail_forum_path(@thread))
+        else
+            render 'new'
+        end
     end
 
     def create

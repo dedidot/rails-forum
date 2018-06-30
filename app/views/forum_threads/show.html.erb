@@ -6,7 +6,9 @@
   </div> 
   <div class="media-body">
     <div class="col-md-12">
-        <h4 class="media-heading fweightnormal"><%= link_to @thread.title.titleize, detail_forum_path(slug: @thread.slug), class: "mdpdnull colorblack title font15" %></h4>
+        <h4 class="media-heading fweightnormal"><%= link_to @thread.title.titleize, detail_forum_path(slug: @thread.slug), class: "mdpdnull colorblack title font15" %>
+            <%= link_to "edit", edit_forum_thread_path(@thread), class: "btn btn-xs btn-default" %>
+        </h4>
     </div>
     <div class="col-md-6">
         <div class="fn12 fncolorlabel">
