@@ -30,10 +30,12 @@ class ForumThreadsController < ApplicationController
 
     def edit
         @thread = ForumThread.find(params[:id])
+        authorize @thread
     end
 
     def update
         @thread = ForumThread.find(params[:id])
+        authorize @thread
         if @thread.update(resource_params)
             redirect_back(fallback_location: detail_forum_path(@thread))
         else
