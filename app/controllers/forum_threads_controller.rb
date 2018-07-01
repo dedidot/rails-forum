@@ -3,7 +3,7 @@ class ForumThreadsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create]
 
     def index
-        @threads = ForumThread.order(sticky_order: :asc).order(id: :desc)
+        @threads = ForumThread.order(sticky_order: :asc).order(id: :desc).paginate(:per_page => 5, :page => params[:page])
     end
 
     def showbyslug
@@ -16,6 +16,12 @@ class ForumThreadsController < ApplicationController
     def show
         @post = ForumPost.new
         @thread = ForumThread.friendly.find(params[:id])
+    end
+
+    def destroy
+        @thread = ForumThread.friendly.find(params[:id])
+        @thread.destroy
+        redirect_to root_path, notice: "Berhasil hapus"
     end
     
     def new

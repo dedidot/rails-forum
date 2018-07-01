@@ -14,6 +14,7 @@
             <h4 class="media-heading fweightnormal"><%= link_to @thread.title.titleize, detail_forum_path(slug: @thread.slug), class: "mdpdnull colorblack title font15" %>
                 <% if policy(@thread).edit? %>
                     <%= link_to "edit", edit_forum_thread_path(@thread), class: "btn btn-xs btn-default" %>
+                    <%= link_to "delete", forum_thread_path(@thread), method: :delete, data: {confirm: "Serius mau hapus?"}, class: "btn btn-xs btn-danger" %>
                 <% end %>
             </h4>
         </div>
