@@ -5,7 +5,8 @@ ruby '2.5.1'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
-gem 'sluggable-rails'
+#gem 'sluggable-rails'
+gem 'friendly_id'
 gem "pundit"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

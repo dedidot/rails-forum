@@ -1,36 +1,9 @@
-<div class="media mrbotton30">
-  <div class="media-left">
-    <a href="#">
-        <%= image_tag "photo.jpg", { class: "photolist img-circle" } %>
-    </a>
-  </div> 
-  <div class="media-body">
-    <div class="col-md-12">
-        <h4 class="media-heading fweightnormal"><%= link_to @thread.title.titleize, detail_forum_path(slug: @thread.slug), class: "mdpdnull colorblack title font15" %>
-            <% if policy(@thread).edit? %>
-                <%= link_to "edit", edit_forum_thread_path(@thread), class: "btn btn-xs btn-default" %>
-            <% end %>
-        </h4>
-    </div>
-    <div class="col-md-6">
-        <div class="fn12 fncolorlabel">
-            <span><%= I18n.l(@thread.created_at.to_date) %></span>
-            by <span class="fnbold"><%= @thread.user.name %></span>
-        </div>
-    </div>
-    <div class="col-md-6 right">
-        <span class="mrright10"><i class="glyphicon glyphicon-comment"></i> <%= @thread.forum_posts_count %></span>
-        <label class="label label-danger">Rails</label>
-    </div>
-    <div class="col-md-12 fn12 fncolorlabel">
-        <%= @thread.content %>
-    </div>
-  </div>
+<div class="col-md-2">
+    <%= render 'leftbutton' %>
 </div>
+<div class="col-md-10">
 
-<% if @thread.forum_posts.any? %>
-    <% @thread.forum_posts.each do |t| %>
-    <div class="media mrbotton10">
+    <div class="media mrbotton30">
     <div class="media-left">
         <a href="#">
             <%= image_tag "photo.jpg", { class: "photolist img-circle" } %>
@@ -38,44 +11,77 @@
     </div> 
     <div class="media-body">
         <div class="col-md-12">
+            <h4 class="media-heading fweightnormal"><%= link_to @thread.title.titleize, detail_forum_path(slug: @thread.slug), class: "mdpdnull colorblack title font15" %>
+                <% if policy(@thread).edit? %>
+                    <%= link_to "edit", edit_forum_thread_path(@thread), class: "btn btn-xs btn-default" %>
+                <% end %>
+            </h4>
+        </div>
+        <div class="col-md-6">
             <div class="fn12 fncolorlabel">
-                <span class="fnbold"><%= t.user.name %></span> at
-                <span><%= I18n.l(t.created_at.to_date) %></span>
+                <span><%= I18n.l(@thread.created_at.to_date) %></span>
+                by <span class="fnbold"><%= @thread.user.name %></span>
             </div>
+        </div>
+        <div class="col-md-6 right">
+            <span class="mrright10"><i class="glyphicon glyphicon-comment"></i> <%= @thread.forum_posts_count %></span>
+            <label class="label label-danger">Rails</label>
         </div>
         <div class="col-md-12 fn12 fncolorlabel">
-            <%= t.content %>
+            <%= @thread.content %>
         </div>
     </div>
     </div>
+
+    <% if @thread.forum_posts.any? %>
+        <% @thread.forum_posts.each do |t| %>
+        <div class="media mrbotton10">
+        <div class="media-left">
+            <a href="#">
+                <%= image_tag "photo.jpg", { class: "photolist img-circle" } %>
+            </a>
+        </div> 
+        <div class="media-body">
+            <div class="col-md-12">
+                <div class="fn12 fncolorlabel">
+                    <span class="fnbold"><%= t.user.name %></span> at
+                    <span><%= I18n.l(t.created_at.to_date) %></span>
+                </div>
+            </div>
+            <div class="col-md-12 fn12 fncolorlabel">
+                <%= t.content %>
+            </div>
+        </div>
+        </div>
+        <% end %>
+    <% else %>
+        <div class="col-md-12">
+            <label class="alert alert-warning col-md-12">Belum ada tanggapan</label>
+        </div>
     <% end %>
-<% else %>
-    <div class="col-md-12">
-        <label class="alert alert-warning col-md-12">Belum ada tanggapan</label>
+
+    <% if user_signed_in? %>
+        <div class="col-md-12">
+            <% if @post.errors.any? %>
+                <div class="alert alert-danger">
+                    <% @post.errors.full_messages.each do |error| %>
+                        <span><%= error %></span><br/>
+                    <% end %>
+                </div>
+            <% end %>
+
+            <%= form_for [@thread, @post] do |f| %>
+                <div class="form-group">
+                    <%= f.text_area :content, class: 'form-control', placeholder: 'Tulis tanggapan anda disini.' %>
+                </div>
+                <div class="form-group">
+                    <%= f.submit "Reply", class: 'btn btn-sm btn-default col-md-12' %>
+                </div>
+            <% end %>
+        </div>
+    <% else %>
+        <div class="col-md-12 alert alert-danger">Login untuk memberi tanggapan.</div>
+    <% end %>
+
     </div>
-<% end %>
-
-<% if user_signed_in? %>
-    <div class="col-md-12">
-        <% if @post.errors.any? %>
-            <div class="alert alert-danger">
-                <% @post.errors.full_messages.each do |error| %>
-                    <span><%= error %></span><br/>
-                <% end %>
-            </div>
-        <% end %>
-
-        <%= form_for [@thread, @post] do |f| %>
-            <div class="form-group">
-                <%= f.text_area :content, class: 'form-control', placeholder: 'Tulis tanggapan anda disini.' %>
-            </div>
-            <div class="form-group">
-                <%= f.submit "Reply", class: 'btn btn-sm btn-default col-md-12' %>
-            </div>
-        <% end %>
-    </div>
-<% else %>
-    <div class="col-md-12 alert alert-danger">Login untuk memberi tanggapan.</div>
-<% end %>
-
 </div>

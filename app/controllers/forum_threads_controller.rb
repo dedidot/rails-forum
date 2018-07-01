@@ -15,7 +15,7 @@ class ForumThreadsController < ApplicationController
 
     def show
         @post = ForumPost.new
-        @thread = ForumThread.find(params[:id])
+        @thread = ForumThread.friendly.find(params[:id])
     end
     
     def new
@@ -23,21 +23,22 @@ class ForumThreadsController < ApplicationController
     end
 
     def pinit
-        @thread = ForumThread.find(params[:id])
+        @thread = ForumThread.friendly.find(params[:id])
         @thread.pinit!
         redirect_to root_path
     end
 
     def edit
-        @thread = ForumThread.find(params[:id])
+        @thread = ForumThread.friendly.find(params[:id])
         authorize @thread
     end
 
     def update
-        @thread = ForumThread.find(params[:id])
+        @thread = ForumThread.friendly.find(params[:id])
         authorize @thread
         if @thread.update(resource_params)
-            redirect_back(fallback_location: detail_forum_path(@thread))
+            #redirect_back(fallback_location: root_path(@thread))
+            redirect_to root_path
         else
             render 'new'
         end

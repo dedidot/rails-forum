@@ -1,56 +1,53 @@
-<% if user_signed_in? %>
-<div class="row mrbotton10">
-    <%= link_to "Add new", new_forum_thread_path, class: "btn btn-sm btn-default col-md-12" %>
+<div class="col-md-2">
+    <%= render 'leftbutton' %>
 </div>
-<% else %>
-<div class="row mrbotton10">
-    <div class="col-md-12 alert alert-warning">Login dulu untuk membuat thread</div>
-</div>
-<% end %>
+<div class="col-md-10">
 
-<div class="row mrbotton10">
-    <div class="col-md-2">
-        <select class="form-control" name="">
-            <option value="">Last</option>
-            <option value="">New</option>
-        </select>
-    </div>
-    <div class="col-md-10">
-    </div>
-</div>
-
-<% @threads.each do |t| %>
-<div class="media mrbotton30">
-  <div class="media-left">
-    <a href="#">
-        <%= image_tag "photo.jpg", { class: "photolist img-circle" } %>
-    </a>
-  </div> 
-  <div class="media-body">
-    <div class="col-md-12">
-        <h4 class="media-heading fweightnormal"><%= link_to t.title.titleize, detail_forum_path(slug: t.slug), class: "mdpdnull colorblack title font15" %>
-        <% if t.sticky? %>
-            <span class="glyphicon glyphicon-pushpin"></span>
-        <% else %>
-            <%= link_to "Pin it", pinit_forum_thread_path(t), class: "btn btn-xs btn-default", method: :put %>
-        <% end %>
-        </h4>
-    </div>
-    <div class="col-md-6">
-        <div class="fn12 fncolorlabel">
-            <span><%= I18n.l(t.created_at.to_date) %></span>
-            by <span class="fnbold"><%= t.user.name %></span>
+        <div class="row mrbotton10">
+            <div class="col-md-2">
+                <select class="form-control" name="">
+                    <option value="">Last</option>
+                    <option value="">New</option>
+                </select>
+            </div>
+            <div class="col-md-10">
+            </div>
         </div>
-    </div>
-    <div class="col-md-6 right">
-        <span class="mrright10"><i class="glyphicon glyphicon-comment"></i> <%= t.forum_posts_count %></span>
-        <label class="label label-danger">Rails</label>
-    </div>
-    <div class="col-md-12 fn12 fncolorlabel">
-        <%= t.content %>
-    </div>
-  </div>
-</div>
-<% end %>
+
+        <% @threads.each do |t| %>
+        <div class="media mrbotton30">
+        <div class="media-left">
+            <a href="#">
+                <%= image_tag "photo.jpg", { class: "photolist img-circle" } %>
+            </a>
+        </div> 
+        <div class="media-body">
+            <div class="col-md-12">
+                <h4 class="media-heading fweightnormal"><%= link_to t.title.titleize, forum_thread_path(t), class: "mdpdnull colorblack title font15" %>
+                <% if t.sticky? %>
+                    <span class="glyphicon glyphicon-pushpin"></span>
+                <% else %>
+                    <%= link_to "Pin it", pinit_forum_thread_path(t), class: "btn btn-xs btn-default", method: :put %>
+                <% end %>
+                </h4>
+            </div>
+            <div class="col-md-6">
+                <div class="fn12 fncolorlabel">
+                    <span><%= I18n.l(t.created_at.to_date) %></span>
+                    by <span class="fnbold"><%= t.user.name %></span>
+                </div>
+            </div>
+            <div class="col-md-6 right">
+                <span class="mrright10"><i class="glyphicon glyphicon-comment"></i> <%= t.forum_posts_count %></span>
+                <label class="label label-danger">Rails</label>
+            </div>
+            <div class="col-md-12 fn12 fncolorlabel">
+                <%= t.content %>
+            </div>
+        </div>
+        </div>
+        <% end %>
+
+        </div>
 
 </div>

@@ -1,7 +1,9 @@
 class ForumThreadPolicy < ApplicationPolicy
 
     def edit?
-        user.id == record.user_id
+        if user
+            user.id == record.user_id
+        end
     end
     
     def update?
