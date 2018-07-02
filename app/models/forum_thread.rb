@@ -1,4 +1,5 @@
 class ForumThread < ApplicationRecord
+    acts_as_paranoid #deleted_at
     extend FriendlyId
     friendly_id :title, use: :slugged
 
