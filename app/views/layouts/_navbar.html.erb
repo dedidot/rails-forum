@@ -26,9 +26,9 @@
               <li><%= link_to "Register", new_user_registration_path %></li>
             <% end %>
           </ul>
-          <form class="navbar-form navbar-right">
+          <form class="navbar-form navbar-right" action="" method="get">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" class="form-control" name="search" value="" placeholder="Search">
             </div>
           </form>
         </div><!-- /.navbar-collapse -->

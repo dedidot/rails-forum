@@ -3,7 +3,11 @@ class ForumThreadsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create]
 
     def index
-        @threads = ForumThread.order(sticky_order: :asc).order(id: :desc).paginate(:per_page => 5, :page => params[:page])
+        @threads = ForumThread.order(sticky_order: :asc).order(id: :desc)
+        if params[:search]
+            @threads = @threads.where("title like ?", "%#{params[:search]}%")
+        end
+        @threads = @threads.paginate(:per_page => 5, :page => params[:page])
     end
 
     def showbyslug
