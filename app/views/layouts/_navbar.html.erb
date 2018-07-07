@@ -19,7 +19,9 @@
 
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><%= link_to current_user.email, root_path %></li>
+              <li>
+                  <%= image_tag current_user.avatar.variant(resize: "25x25"), class: "image-circle" if current_user.avatar.attached? %>                  
+                  <%= link_to current_user.email, edit_user_path(current_user) %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "Login", user_session_path %></li>

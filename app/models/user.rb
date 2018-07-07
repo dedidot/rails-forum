@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :forum_threads
   has_many :forum_posts
-
+  has_one_attached :avatar
   enum level: {member: 0, admin: 1}
 end

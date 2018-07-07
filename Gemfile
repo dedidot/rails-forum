@@ -10,6 +10,8 @@ gem 'friendly_id'
 gem "pundit"
 gem 'will_paginate'
 gem "paranoia"
+gem 'image_processing'
+gem "mini_magick"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
