@@ -9,6 +9,7 @@ class ForumPostsController < ApplicationController
         @post.forum_thread_id = @thread.id
 
         if @post.save
+            PostMailer.with(user: @thread.user, post: @post).to_user.deliver_later
             redirect_back(fallback_location: detail_forum_path(@thread))
         else 
             #render 'forum_threads/show'
