@@ -18,7 +18,7 @@
         <div class="media mrbotton30">
         <div class="media-left">
             <a href="#">
-                <%= image_tag "photo.jpg", { class: "photolist img-circle" } %>
+                <%= image_tag t.user.avatar.variant(resize: "30x30"), class: "img-circle nav_pp" if t.user.avatar.attached? %>
             </a>
         </div> 
         <div class="media-body">
