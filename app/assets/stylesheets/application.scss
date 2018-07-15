@@ -13,5 +13,7 @@
  *= require_tree .
  *= require_self
  */
+html body { font-family: "proxima-nova","Helvetica neue",Helvetica,sans-serif;}
+nav.navbar-default { border-radius: 0; background-color: #8156a3; padding: 0px; }
 @import 'bootstrap-sprockets';
 @import 'bootstrap';

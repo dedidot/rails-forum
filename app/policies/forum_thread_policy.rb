@@ -9,5 +9,11 @@ class ForumThreadPolicy < ApplicationPolicy
     def update?
         user.id == record.user_id || user.admin?
     end
+
+    def pinit?
+        if user
+            user.admin?
+        end
+    end
     
 end

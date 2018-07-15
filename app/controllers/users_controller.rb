@@ -13,13 +13,13 @@ class UsersController < ApplicationController
         @user = User.find(params[:id]).update(resource_params)
         #@user.avatar.attach(params[:avatar])
         #render plain: @user #@user.avatar.attached?
-        #flush[:notice] = "Sukses ganti photo"
+        flash[:notice] = "Sukses edit"
         redirect_to root_path
     end
 
     private 
 
     def resource_params
-        params.require(:user).permit(:avatar)
+        params.require(:user).permit(:avatar, :name, :email)
     end
 end

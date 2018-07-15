@@ -1,3 +1,9 @@
+<div class="row mrbottom20">
+    <div class="col-md-12 txcenter">
+        <h1 class="hd-title fnbold font15"><i class="glyphicon glyphicon-comment mrright10"></i> Selamat datang !!!</h1>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the.</p>
+    </div>
+</div>
 <div class="col-md-2">
     <%= render 'leftbutton' %>
 </div>
@@ -27,7 +33,9 @@
                 <% if t.sticky? %>
                     <span class="glyphicon glyphicon-pushpin"></span>
                 <% else %>
-                    <%= link_to "Pin it", pinit_forum_thread_path(t), class: "btn btn-xs btn-default", method: :put %>
+                    <% if policy(t).pinit? %>
+                        <%= link_to "Pin it", pinit_forum_thread_path(t), class: "btn btn-xs btn-default", method: :put %>
+                    <% end %>
                 <% end %>
                 </h4>
             </div>
