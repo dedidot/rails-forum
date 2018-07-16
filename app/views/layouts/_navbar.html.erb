@@ -24,7 +24,7 @@
                   <%= link_to current_user.email, edit_user_path(current_user), style: "color: #ffffff;" %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete, style: "color: #ffffff;" %></li>
             <% else %>
-              <li><%= link_to "Login", user_session_path(redirect_to: request.path), style: "color: #ffffff;" %></li>
+              <li><%= link_to "Login", user_session_path, style: "color: #ffffff;" %></li>
               <li><%= link_to "Register", new_user_registration_path, style: "color: #ffffff;" %></li>
             <% end %>
           </ul>
